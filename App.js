@@ -1,10 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Platform } from 'react-native';
 import { HomeScreen } from './screens/HomeScreen';
+import { SafeAreaView,  } from 'react-native-safe-area-context';
+
+export function ProvidedApp() {
+  return (
+    <>
+      <HomeScreen />
+    </>
+  );
+}
+
 
 export default function App() {
   return (
-    <HomeScreen />
+    Platform.select(
+      {
+        web: (
+          <View>
+            <ProvidedApp />
+          </View>
+        ),
+        default: (
+          <View>
+            <StatusBar />
+            <SafeAreaView>
+              <ProvidedApp />
+            </SafeAreaView>
+          </View>
+
+        )
+      }
+    )    
   );
 }
 
