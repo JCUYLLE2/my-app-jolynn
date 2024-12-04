@@ -1,5 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View, StyleSheet } from 'react-native';
+import { Button } from 'react-native-web';
+import tw from 'twrnc';
 
 
 
@@ -15,20 +17,15 @@ function Banner(){
 
 export function HomeScreen() {
   return (
-   <Banner />   
+    <View>
+        <Banner />  
+        <Button />
+   </View>
     );
 }
 
 
 const styles = StyleSheet.create({
-    banner: {
-    backgroundColor: 'purple',
-    padding: 25,
-  },
-  bannerText: {
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 20
-  },
+banner: tw`bg-purple-700 p-5`,
+bannerText : tw`text-white text-lg font-bold text-center`
 });
