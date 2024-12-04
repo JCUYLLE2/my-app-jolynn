@@ -15,10 +15,20 @@ function Banner(){
     );
 }
 
+function HomeScreenButton(){
+    const navigation = useNavigation();
+    return (
+        <View style={styles.background}>
+            <Button title="Go to Places" onPress={() => navigation.navigate('Places')} />
+        </View>
+    );
+}
+
+
 export function HomeScreen() {
   return (
     <View>
-        <Banner />  
+        <HomeScreenButton />
         <Button />
    </View>
     );

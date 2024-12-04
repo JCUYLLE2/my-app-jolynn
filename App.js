@@ -2,11 +2,21 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Platform } from 'react-native';
 import { HomeScreen } from './screens/HomeScreen';
 import { SafeAreaView,  } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { PlacesScreen } from './screens/PlacesScreen';
 
-export function ProvidedApp() {
+const Stack = createNativeStackNavigator();
+
+
+
+function ProvidedApp() {
   return (
     <>
-      <HomeScreen />
+      <Stack.Navigator>
+        <Stack.Screen name={NAV_HOME} component={HomeScreen} />
+        <Stack.Screen name={NAV_PLACES} component={PlacesScreen} />
+      </Stack.Navigator>
     </>
   );
 }
@@ -17,17 +27,15 @@ export default function App() {
     Platform.select(
       {
         web: (
-          <View>
+          <NavigationContainer>
             <ProvidedApp />
-          </View>
+          </NavigationContainer>
         ),
         default: (
-          <View>
+          <NavigationContainer>
             <StatusBar />
-            <SafeAreaView>
-              <ProvidedApp />
-            </SafeAreaView>
-          </View>
+            <ProvidedApp />
+          </NavigationContainer>
 
         )
       }
